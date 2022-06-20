@@ -87,6 +87,8 @@ export const createUserDocumentFromAuth = async (
   const userDocRef = doc(db, "Users", userAuth.uid);
   const userSnapshot = await getDoc(userDocRef);
   if (!userSnapshot.exists()) {
+    // console.log("user snapshot does NOT exist!!!!");
+
     const { displayName, email, uid } = userAuth;
     const createdAt = new Date();
 
@@ -102,6 +104,8 @@ export const createUserDocumentFromAuth = async (
       console.log("error creating the user", error.message);
     }
   }
+
+  // console.log("snapshot exists and we are returning it!!!", userSnapshot);
 
   return userDocRef;
 };

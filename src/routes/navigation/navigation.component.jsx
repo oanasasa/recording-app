@@ -2,12 +2,20 @@ import React, { Fragment, useContext } from "react";
 import { Outlet, Link, NavLink } from "react-router-dom";
 import { UserContext } from "../../contexts/user.context";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
+import { useNavigate } from "react-router-dom";
 
 import { ReactComponent as CrownLogo } from "../../assets/logo-playYourVoice.svg";
 import "./../../style.css";
 
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
+  let navigate = useNavigate();
+
+  const signOut = async () => {
+    await signOutUser();
+
+    navigate("/");
+  };
 
   return (
     <Fragment>
@@ -31,7 +39,7 @@ const Navigation = () => {
                     ADMIN
                   </Link>
                 </Fragment>
-                <span className="nav-link" onClick={signOutUser}>
+                <span className="nav-link" onClick={signOut}>
                   SIGN OUT
                 </span>
               </div>

@@ -3,6 +3,7 @@ import { useState } from "react";
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
 import "./../../style.css";
+import { useNavigate } from "react-router-dom";
 
 import {
   signInWithGooglePopup,
@@ -18,6 +19,8 @@ const defaultFormFields = {
 const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
+
+  let navigate = useNavigate();
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -36,6 +39,8 @@ const SignInForm = () => {
         password
       );
       resetFormFields();
+
+      navigate("/", { replace: true });
     } catch (error) {
       switch (error.code) {
         case "auth/wrong-password":
