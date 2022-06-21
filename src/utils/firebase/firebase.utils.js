@@ -67,8 +67,8 @@ export const addCollectionAndDocuments = async (
 export const getFilesAndDocuments = async () => {
   const collectionRef = collection(db, "Text Folder");
   const q = query(collectionRef);
-
   const querySnapshot = await getDocs(q);
+
   const fileMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
     const { title, items } = docSnapshot.data();
     acc[title.toLowerCase()] = items;
@@ -85,10 +85,9 @@ export const createUserDocumentFromAuth = async (
   if (!userAuth) return;
 
   const userDocRef = doc(db, "Users", userAuth.uid);
+
   const userSnapshot = await getDoc(userDocRef);
   if (!userSnapshot.exists()) {
-    // console.log("user snapshot does NOT exist!!!!");
-
     const { displayName, email, uid } = userAuth;
     const createdAt = new Date();
 
@@ -149,15 +148,12 @@ export const getCurrentUserRecordings = async () => {
   const collectionRef = collection(db, "Recordings");
 
   if (!auth.currentUser) {
-    // console.log("no current user selected");
     return [];
   } else {
-    // console.log(auth.currentUser.uid) ;
     const q = query(collectionRef, where("author", "==", auth.currentUser.uid));
     const querySnapshot = await getDocs(q);
     const recordingsMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
       acc.push(docSnapshot.data());
-      // console.log(acc);
       return acc;
     }, []);
 
@@ -165,46 +161,21 @@ export const getCurrentUserRecordings = async () => {
   }
 };
 
-export const showDataFromFirestore = async () => {
-  // const recordDocRef = collection(db, 'Recordings');
-  // const q = query(recordDocRef);
-  // const querySnapshot = await getDocs(q);
-  // const recordingsMap = querySnapshot.docs.reduce(( docSnapshot ) => {
-  //     const { name } = docSnapshot.data();
-  //     return name;
-  // },[])
-  // return recordingsMap;
+export const getUserDataFromFireStore = async () => {
+  const userDocRef = collection(db, "Users");
+  const q = query(userDocRef);
+  const querySnapshot = await getDocs(q);
+
+  const usersMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
+    const { email, displayName } = docSnapshot.data();
+    acc = [email, displayName];
+    return acc;
+  }, []);
+
+  return usersMap;
 };
 
-export const getByUserId = async () => {
-  //mine's
-  // const recordDocRef = collection(db, 'Users');
-  // const q = query(recordDocRef);
-  // const querySnapshot = await getDocs(q);
-  // const userMap = querySnapshot.docs.reduce(( docSnapshot ) => {
-  //     const { uid, email, displayName } = docSnapshot.data();
-  //      console.log(uid, email, displayName);
-  // }, {});
-  // return userMap;
-  // const recordDocRef = doc(db, 'recordings');
-  //Alex's code
-  // const q = query(collection(db, 'recordings'), where('author', '==', 'SJ7TsH7AmHQDoQudZdWRqoL2Oww2'));
-  // const querySnapshot = await getDocs(q);
-  // const results = [];
-  // querySnapshot.forEach(doc => {
-  //     results.push(doc.data());
-  // });
-  // return results;
-  // return db.collection('recordings').document().get();
-  // return (
-  //     await getRecordings
-  //         .where('author', '==', auth.currentUser.uid)
-  //         .limit(1)
-  // );
-};
-
-//signOut
-
+//Sign Out
 export const signOutUser = async () => await signOut(auth);
 
 export const onAuthStateChangedListener = (callback) =>

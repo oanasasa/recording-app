@@ -3,29 +3,16 @@ import { useUserContext } from "../../contexts/user.context";
 
 const UserProfileData = () => {
   // const { user } = useContext(UserContext);
-  const user = useUserContext();
-  const userState = user.currentUser;
+  const userState = useUserContext();
 
   if (userState) {
-    const email = userState.email;
-    const displayName = userState.displayName;
-    const uid = userState.uid;
-    const createdAt = userState.createdAt;
-    console.log(userState);
-
     return (
       <div className="text-component-container">
         <p>
-          <b>Your email:</b> {email}
+          <b>Your email:</b> {userState.usersMap[0]}
         </p>
         <p>
-          <b>Your name:</b> {displayName}
-        </p>
-        <p>
-          <b>Your id:</b> {uid}
-        </p>
-        <p>
-          <b>Account created:</b> {createdAt}
+          <b>Your name:</b> {userState.usersMap[1]}
         </p>
       </div>
     );

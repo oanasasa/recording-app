@@ -8,14 +8,11 @@ const DinamicText = ({
   setNewText,
   setTextId,
 }) => {
-  console.log(currentPhrase);
-
   return (
     <div className="file-text-container">
       <select
         className="title"
         onChange={(e) => {
-          console.log(e.target.value);
           setMyState(e.target.value);
           setTextId(0);
         }}

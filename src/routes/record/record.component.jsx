@@ -19,8 +19,6 @@ const Record = () => {
     const getRecordingsMap = async () => {
       const recordingMap = await getCurrentUserRecordings();
       setRecordingsMap(recordingMap);
-
-      console.log("recordings from the BE: ", recordingMap);
     };
     getRecordingsMap();
   }, []);
@@ -57,13 +55,10 @@ const Record = () => {
 
   useEffect(() => {
     if (filesMap && Object.keys(filesMap.filesMap).length > 0) {
-      console.log("setting my phrases: ", myPhrases);
       setPhrases(myPhrases);
     }
 
     if (textId < phrases.length) {
-      console.log("this is my current text id: ", textId);
-
       setCurrentPhrase(phrases[textId]);
     }
   }, [filesMap, textId, phrases, myPhrases]);
