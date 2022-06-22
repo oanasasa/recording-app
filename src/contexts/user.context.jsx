@@ -17,8 +17,8 @@ export const useUserContext = () => useContext(UserContext);
 
 export const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
-  const [usersMap, setUsersMap] = useState([]);
-  const value = { currentUser, setCurrentUser, usersMap };
+  const [userData, setUserData] = useState([]);
+  const value = { currentUser, setCurrentUser, userData };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChangedListener((user) => {
@@ -32,12 +32,11 @@ export const UserProvider = ({ children }) => {
 
   useEffect(() => {
     const getUsersMap = async () => {
-      const userMap = await getUserDataFromFireStore();
-      setUsersMap(userMap);
-      // console.log(userMap);
+      const userDataSnapshot = await getUserDataFromFireStore();
+      setUserData(userDataSnapshot);
     };
     return getUsersMap;
-  }, []);
+  }, [currentUser]);
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };

@@ -163,16 +163,24 @@ export const getCurrentUserRecordings = async () => {
 
 export const getUserDataFromFireStore = async () => {
   const userDocRef = collection(db, "Users");
-  const q = query(userDocRef);
-  const querySnapshot = await getDocs(q);
 
-  const usersMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
-    const { email, displayName } = docSnapshot.data();
-    acc = [email, displayName];
-    return acc;
-  }, []);
+  if (!auth.currentUser) {
+    console.log("fara user");
+    return {};
+  } else {
+    const q = query(userDocRef, where("uid", "==", auth.currentUser.uid));
+    const querySnapshot = await getDocs(q);
 
-  return usersMap;
+    let docData = undefined;
+
+    querySnapshot.forEach((doc) => {
+      docData = doc.data();
+    });
+
+    console.log("this is the doc data", docData);
+
+    return docData;
+  }
 };
 
 //Sign Out
