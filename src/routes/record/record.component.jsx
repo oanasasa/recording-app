@@ -8,20 +8,12 @@ import "./../../style.css";
 
 const Record = () => {
   const filesMap = useFilesContext();
-  const { recordingsMap, setRecordingsMap } = useContext(RecordingsContext);
+  const { recordingsMap } = useContext(RecordingsContext);
 
   const [textId, setTextId] = useState(0);
   const [phrases, setPhrases] = useState([]);
   const [myState, setMyState] = useState("proverbs file");
   const [currentPhrase, setCurrentPhrase] = useState(null);
-
-  useEffect(() => {
-    const getRecordingsMap = async () => {
-      const recordingMap = await getCurrentUserRecordings();
-      setRecordingsMap(recordingMap);
-    };
-    getRecordingsMap();
-  }, []);
 
   const myStateBasedRecordsIds = useMemo(
     () =>

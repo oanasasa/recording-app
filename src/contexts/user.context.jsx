@@ -17,7 +17,7 @@ export const useUserContext = () => useContext(UserContext);
 
 export const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
-  const [userData, setUserData] = useState([]);
+  const [userData, setUserData] = useState({});
   const value = { currentUser, setCurrentUser, userData };
 
   useEffect(() => {
