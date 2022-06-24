@@ -12,7 +12,7 @@ const Record = () => {
 
   const [textId, setTextId] = useState(0);
   const [phrases, setPhrases] = useState([]);
-  const [myState, setMyState] = useState("proverbs file");
+  const [myState, setMyState] = useState("advices file");
   const [currentPhrase, setCurrentPhrase] = useState(null);
 
   const myStateBasedRecordsIds = useMemo(
@@ -54,6 +54,8 @@ const Record = () => {
       setCurrentPhrase(phrases[textId]);
     }
   }, [filesMap, textId, phrases, myPhrases]);
+
+  console.log("this is the current phrase", currentPhrase);
 
   const setNewText = () => {
     const nextId = textId + 1 < myPhrases.length ? textId + 1 : 0;

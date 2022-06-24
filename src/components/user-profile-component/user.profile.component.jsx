@@ -6,9 +6,11 @@ import { useUserContext } from "../../contexts/user.context";
 const UserProfileData = () => {
   const { recordingsMap: recordings } = useContext(RecordingsContext);
   const filesMap = useFilesContext();
-  console.log("this is the files map", filesMap);
 
   const userState = useUserContext();
+
+  console.log("this is the USER map", userState);
+
   const { displayName, email, createdAt } = userState.userData;
 
   const filteredTextTypeRecordings = recordings.reduce((acc, recording) => {
