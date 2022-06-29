@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import {
   getAuth,
   signInWithPopup,
@@ -20,8 +21,7 @@ import {
   where,
 } from "firebase/firestore";
 
-import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
-
+//Configurarea proiectului 'recording-app' din Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyA8LkSDzHkE1SOtfHMkf4vPVV1_mt085HQ",
   authDomain: "recording-app-db.firebaseapp.com",
@@ -30,7 +30,6 @@ const firebaseConfig = {
   messagingSenderId: "240084527244",
   appId: "1:240084527244:web:2d082402381d6c7787f3a9",
 };
-
 const firebaseApp = initializeApp(firebaseConfig);
 
 const googleProvider = new GoogleAuthProvider();
@@ -80,14 +79,14 @@ export const createUserDocumentFromAuth = async (
   additionalInformation = {}
 ) => {
   if (!userAuth) return;
-
   const userDocRef = doc(db, "Users", userAuth.uid);
-
   const userSnapshot = await getDoc(userDocRef);
+
+  //verificăm dacă userul există
   if (!userSnapshot.exists()) {
     const { displayName, email, uid } = userAuth;
     const createdAt = new Date();
-
+    //populăm documentul din colecție cu datele preluate asincron
     try {
       await setDoc(userDocRef, {
         displayName,
@@ -100,9 +99,6 @@ export const createUserDocumentFromAuth = async (
       console.log("error creating the user", error.message);
     }
   }
-
-  // console.log("snapshot exists and we are returning it!!!", userSnapshot);
-
   return userDocRef;
 };
 
@@ -117,9 +113,6 @@ export const signInAuthUserWithEmailAndPassword = async (email, password) => {
 };
 
 export const upload = async (textId, textType, blob) => {
-  //TODO REPLACE WITH UUID (see uuidv4 on npm)
-  // const { uuid } = require('uuidv4');
-
   const idRandom = `${"_" + Math.random().toString(36).substr(2, 9)}`;
   const reference = ref(storage, `Recordings/${idRandom}`);
   console.log("uploading...");
@@ -136,7 +129,6 @@ export const upload = async (textId, textType, blob) => {
   });
 
   console.log("doc set");
-  // }
 };
 
 //get files from firestore
@@ -160,22 +152,20 @@ export const getCurrentUserRecordings = async () => {
 
 export const getUserDataFromFireStore = async () => {
   const userDocRef = collection(db, "Users");
-
+  //verificăm în funcție de ID, utilizatorul curent
   if (!auth.currentUser) {
-    console.log("fara user");
     return {};
   } else {
+    //cream un query din baza de date pentru aplarea documentului dorit
     const q = query(userDocRef, where("uid", "==", auth.currentUser.uid));
     const querySnapshot = await getDocs(q);
-
     let docData = undefined;
 
+    //parcurgerea obiectelor
     querySnapshot.forEach((doc) => {
       docData = doc.data();
     });
-
-    console.log("this is the doc data", docData);
-
+    //returnăm documentul care îndeplinește condiția
     return docData;
   }
 };

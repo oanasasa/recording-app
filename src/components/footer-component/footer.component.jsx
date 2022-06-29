@@ -1,12 +1,16 @@
 import styles from "./footer.module.css";
 import React from "react";
+import { Link } from "react-router-dom";
+import { ReactComponent as LogoBlack } from "../../assets/blue-back-logo.svg";
 
 const Footer = () => {
   return (
     <div className={styles.footer}>
       <div className={styles.row}>
         <div className={styles.main_column}>
-          <img className={styles.logo} src="images/logo-playYourVoice.svg" />
+          <Link className="logo-container" to="/">
+            <LogoBlack className="logo" />
+          </Link>
           <div className={styles.description}>
             <h4 className="">Check our functionality</h4>
             <p className="">
@@ -18,13 +22,14 @@ const Footer = () => {
           <p className={styles.pages_title}>Clients</p>
           <ul className={styles.pages_list}>
             <li>
-              <a>My account</a>
+              <a>
+                <Link to="/account">My account</Link>
+              </a>
             </li>
             <li>
-              <a>About Us</a>
-            </li>
-            <li>
-              <a>Register</a>
+              <a>
+                <Link to="/authentification">Register</Link>
+              </a>
             </li>
           </ul>
         </div>
@@ -32,18 +37,26 @@ const Footer = () => {
           <p className={styles.pages_title}>Recordings</p>
           <ul className={styles.pages_list}>
             <li>
-              <a>Record Now</a>
+              <a>
+                <Link to="/record">Record Now</Link>
+              </a>
             </li>
             <li>
-              <a>My recordings</a>
+              <a>
+                <Link to="/account">My recordings</Link>
+              </a>
             </li>
             <li>
-              <a>Rules & Indications</a>
+              <a>
+                <Link to="/specs">Rules & Indications</Link>
+              </a>
             </li>
           </ul>
         </div>
       </div>
-      <div className={styles.subfooter}>Copyright oana 2023.</div>
+      <div className={styles.subfooter}>
+        <p>Copyright Play Your Voice.</p>
+      </div>
     </div>
   );
 };

@@ -1,13 +1,24 @@
-import React, { Fragment, useContext } from "react";
-import { UserContext } from "../../contexts/user.context";
+import React from "react";
+import Footer from "../../components/footer-component/footer.component";
 import UserProfileData from "../../components/user-profile-component/user.profile.component";
 import "./../../style.css";
 
 const MyAccount = () => {
   return (
     <div className="page-container">
-      <h1>Your Recordings and information:</h1>
-      <UserProfileData />
+      <div className="section my-account">
+        <div className="row c1">
+          <div className="c1">
+            <h1>Your Recordings and information:</h1>
+          </div>
+        </div>
+        <div className="row c1">
+          <div className="c1 user-infos">
+            <UserProfileData />
+          </div>
+        </div>
+      </div>
+      <Footer />
     </div>
   );
 };

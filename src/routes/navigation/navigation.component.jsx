@@ -1,10 +1,10 @@
 import React, { Fragment, useContext } from "react";
-import { Outlet, Link, NavLink } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 import { UserContext } from "../../contexts/user.context";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 import { useNavigate } from "react-router-dom";
 
-import { ReactComponent as CrownLogo } from "../../assets/logo-playYourVoice.svg";
+import { ReactComponent as Logo } from "../../assets/blue-back-logo.svg";
 import "./../../style.css";
 
 const Navigation = () => {
@@ -23,8 +23,9 @@ const Navigation = () => {
       <div className="navigation">
         <div className="row wc2">
           <Link className="logo-container" to="/">
-            <CrownLogo className="logo" />
+            <Logo className="logo" />
           </Link>
+
           <div className="nav-links-container">
             {currentUser ? (
               <div>
@@ -34,9 +35,6 @@ const Navigation = () => {
                   </Link>
                   <Link className="nav-link my-account" to="/account">
                     ACCOUNT
-                  </Link>
-                  <Link className="nav-link my-account" to="/admin-pannel">
-                    ADMIN
                   </Link>
                 </Fragment>
                 <span className="nav-link" onClick={signOut}>
@@ -50,6 +48,9 @@ const Navigation = () => {
                 </Link>
               </Fragment>
             )}
+            <Link className="nav-link" to="/specs">
+              SPECS
+            </Link>
           </div>
         </div>
       </div>

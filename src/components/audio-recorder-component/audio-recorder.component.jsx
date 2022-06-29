@@ -3,6 +3,7 @@ import { upload } from "../../utils/firebase/firebase.utils.js";
 import Button from "../button/button.component.jsx";
 import { RecordingsContext } from "../../contexts/recordings.context";
 import { getCurrentUserRecordings } from "../../utils/firebase/firebase.utils";
+import styles from "./../../components/button/button.module.css";
 
 const AudioRecorder = ({ currentPhrase }) => {
   const stopBtnRef = useRef(null);
@@ -47,7 +48,6 @@ const AudioRecorder = ({ currentPhrase }) => {
         let chunks = [];
 
         mediaRecorder.start();
-        console.log(mediaRecorder.state);
 
         stopBtnRef.current.addEventListener("click", (ev) => {
           switch (mediaRecorder.state) {
@@ -81,34 +81,33 @@ const AudioRecorder = ({ currentPhrase }) => {
   return (
     <div>
       <div className="buttons-container">
+        <div className="controls-audio">
+          <Button
+            type="button"
+            className="button-container record-button"
+            id="btnStart"
+            onClick={requestPermision}
+          ></Button>
+          <Button
+            ref={stopBtnRef}
+            type="button"
+            className="stop-button"
+            id="btnStop"
+          >
+            {" "}
+          </Button>
+        </div>
+      </div>
+      <div className="audio-container">
+        <audio controls ref={storedAudioRef} id="storedAudio"></audio>
         <Button
           type="button"
-          className="button-container record-button"
-          id="btnStart"
-          onClick={requestPermision}
-        >
-          Record
-        </Button>
-        <Button
-          ref={stopBtnRef}
-          type="button"
-          className="button-container stop-button"
-          id="btnStop"
-        >
-          {" "}
-          Stop{" "}
-        </Button>
-        <Button
-          type="button"
-          className="button-container record-button"
+          className={`${styles.btn} ${styles.submit}`}
           id="btnStart"
           onClick={uploadRecording}
         >
           Submit
         </Button>
-      </div>
-      <div className="audio-container">
-        <audio controls ref={storedAudioRef} id="storedAudio"></audio>
       </div>
     </div>
   );

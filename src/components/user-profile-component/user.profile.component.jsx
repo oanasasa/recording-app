@@ -4,14 +4,21 @@ import { RecordingsContext } from "../../contexts/recordings.context";
 import { useUserContext } from "../../contexts/user.context";
 
 const UserProfileData = () => {
+  console.log("blblbllb");
   const { recordingsMap: recordings } = useContext(RecordingsContext);
+
+  console.log("blblbllb2");
   const filesMap = useFilesContext();
 
+  console.log("blblbllb3");
   const userState = useUserContext();
 
-  console.log("this is the USER map", userState);
+  console.log(userState);
+  console.log(userState.userData);
 
-  const { displayName, email, createdAt } = userState.userData;
+  const { displayName, email } = userState.userData;
+
+  console.log("blblbllb5");
 
   const filteredTextTypeRecordings = recordings.reduce((acc, recording) => {
     if (typeof acc[recording.textType] === "undefined") {
@@ -25,17 +32,15 @@ const UserProfileData = () => {
     return acc;
   }, {});
 
-  console.log("odered nicely recordings", filteredTextTypeRecordings);
-
   return (
     <div>
       <div className="text-component-container">
         <h2>Informations about your account.</h2>
         <p>
-          <b>Your email:</b> {email ? email : ""}
+          <span>Your email:</span> {email ? email : ""}
         </p>
         <p>
-          <b>Your name:</b> {displayName ? displayName : ""}
+          <span>Your name:</span> {displayName ? displayName : ""}
         </p>
         {/* todo: 
             convert createdAt to local time
@@ -46,14 +51,11 @@ const UserProfileData = () => {
         <h2>Your records.</h2>
         <div>
           {Object.keys(filteredTextTypeRecordings).map((key) => {
-            console.log("dis the key", key);
             return (
               <div key={key} style={{ margin: "10px 0 0 0" }}>
                 <p>{key.toUpperCase()}</p>
                 <div>
                   {filteredTextTypeRecordings[key].map((recording) => {
-                    console.log("the key is: ", key, "recording: ", recording);
-
                     const recordingText = filesMap.filesMap[key].filter(
                       (elem) => elem.id === recording.textId
                     )[0].text;
@@ -62,7 +64,7 @@ const UserProfileData = () => {
                       <div key={`${recording.textType}-${recording.textId}`}>
                         <p>{recordingText}</p>
                         <audio controls>
-                          <source src={recording.url} type="audio/ogg" />
+                          <source src={recording.url} type="audio/mp3" />
                         </audio>
                       </div>
                     );

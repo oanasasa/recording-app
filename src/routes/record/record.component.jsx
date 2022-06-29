@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useMemo, useContext } from "react";
-import DinamicText from "../../components/dinamic-text/dinamic-text.componenet";
-import AudioRecorder from "../../components/audio-recorder/audio-recorder.component.jsx";
-import { getCurrentUserRecordings } from "../../utils/firebase/firebase.utils";
+import DinamicText from "../../components/dinamic-text-component/dinamic-text.componenet";
+import AudioRecorder from "../../components/audio-recorder-component/audio-recorder.component.jsx";
 import { useFilesContext } from "../../contexts/files.context.jsx";
 import { RecordingsContext } from "../../contexts/recordings.context";
+import Footer from "../../components/footer-component/footer.component";
 import "./../../style.css";
 
 const Record = () => {
@@ -55,8 +55,6 @@ const Record = () => {
     }
   }, [filesMap, textId, phrases, myPhrases]);
 
-  console.log("this is the current phrase", currentPhrase);
-
   const setNewText = () => {
     const nextId = textId + 1 < myPhrases.length ? textId + 1 : 0;
     setTextId(nextId);
@@ -64,10 +62,14 @@ const Record = () => {
 
   return (
     <div className="page-container">
-      <div className="section">
+      <div className="section record">
         <div className="row wc1">
           <div className="col c1">
-            <p className="t-center">Click 'Record' then read the text aloud.</p>
+            <p className="t-center instructions-text">
+              Start by choosing the category of the <b>file text</b>. Click the{" "}
+              <b>'Record' icon</b> then read the text aloud. Stop the recording
+              after reading and when you are ready press <b>'Submit'</b>.
+            </p>
 
             <div className="text-container">
               <DinamicText
@@ -77,16 +79,13 @@ const Record = () => {
                 setNewText={setNewText}
                 setTextId={setTextId}
               />
-              <div className="text-container">
-                {/* <Button 
-                                className="t-center mt50">New Text</Button> */}
-              </div>
             </div>
 
             <AudioRecorder currentPhrase={currentPhrase} />
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

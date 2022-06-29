@@ -1,9 +1,5 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
-import {
-  addCollectionAndDocuments,
-  getFilesAndDocuments,
-} from "../utils/firebase/firebase.utils";
-import TEXT_DATA from "../text-data.js";
+import { getFilesAndDocuments } from "../utils/firebase/firebase.utils";
 
 export const FilesContext = createContext({
   filesMap: {},

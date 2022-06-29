@@ -10,10 +10,15 @@
 }
 .footer {
   padding-top: 100px;
-  background-color: #e7c6ff;
+  background-color: #edf4f7;
+}
+.footer svg {
+  max-width: 100px;
+  min-height: 100px;
+  overflow: visible;
 }
 .subfooter {
-  border-top: 1px solid #333;
+  border-top: 1px solid #1c1c1c;
   max-width: 1650px;
   margin-inline: auto;
   padding-block: 15px;
@@ -42,7 +47,7 @@
   font-weight: 500;
 }
 .pages_list > li > a:hover {
-  color: #792a9f;
+  color: #0156a1;
   cursor: pointer;
 }
 .pages_title {
@@ -52,4 +57,10 @@
   display: flex;
   align-items: center;
   gap: 40px;
+}
+@media (min-width: 1440px) and (max-width: 1649px) {
+  .row,
+  .subfooter {
+    max-width: 1320px;
+  }
 }

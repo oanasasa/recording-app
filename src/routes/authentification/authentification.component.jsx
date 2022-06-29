@@ -1,8 +1,8 @@
 import React from "react";
 // import{ signInWithGooglePopup } from '../../utils/firebase/firebase.utils'
-import SignUpForm from "../../components/sing-up-form/sing-up-form.component";
-import SignInForm from "../../components/sing-in-form/sing-in-form.component";
-import Footer from "../../components/footer/footer.component";
+import SignUpForm from "../../components/sing-up-form-component/sing-up-form.component";
+import SignInForm from "../../components/sing-in-form-component/sing-in-form.component";
+import Footer from "../../components/footer-component/footer.component";
 import "./../../style.css";
 
 const Authentification = () => {

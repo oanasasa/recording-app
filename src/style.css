@@ -1,41 +1,80 @@
 body {
-  font-family: "Open Sans", sans-serif;
   margin: 0;
+}
+* {
+  box-sizing: border-box;
 }
 a {
   text-decoration: none;
   color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+.nav-link:hover {
+  opacity: 0.7;
+  transition: all 0.3s ease-in-out;
 }
 a:hover {
-  color: #9f59bd;
+  opacity: 0.7;
   text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+p,
+h5 {
+  font-size: 18px;
+  padding-bottom: 10px;
+  margin-bottom: 0;
+}
+h1 {
+  font-size: 48px !important;
+  line-height: 62px !important;
+  font-weight: 500;
+}
+h2 {
+  font-size: 38px !important;
+  line-height: 52px !important;
+  font-weight: 500;
+}
+h3 {
+  font-size: 30px !important;
+  line-height: 48px !important;
+  font-weight: 600;
+}
+h4 {
+  font-size: 24px !important;
+  line-height: 38px !important;
+  font-weight: 500;
 }
 h1,
 h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+p,
+span,
+a,
+select,
+li,
+ul,
+input,
+label {
   font-family: "Dosis", sans-serif;
-  margin: 0 0 20px 0 !important;
+  margin-top: 0;
+  color: #343a40;
+}
+button {
+  font-family: "Dosis", sans-serif;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-* {
-  box-sizing: border-box;
+li,
+ul,
+ol {
+  font-size: 18px !important;
 }
-p {
-  color: #343a40;
-  font-size: 18px;
-  padding-bottom: 10px;
-  margin: 0;
-  font-family: "Dosis", sans-serif;
-}
-h4 {
-  font-size: 24px !important;
-}
+
 img {
   max-width: 650px;
   border-radius: 5px;
@@ -43,17 +82,163 @@ img {
 .t-center {
   text-align: center;
 }
-button.t-center {
-  margin-right: auto;
-  margin-left: auto;
-}
 .tiny {
   font-size: 15px !important;
   font-weight: 300;
 }
+.my-account .row {
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.my-account .user-infos > div {
+  display: flex;
+  gap: 50px;
+}
+.my-account .text-component-container {
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: rgb(0 0 0 / 10%) 0px 10px 50px;
+  padding: 40px 60px;
+  height: 100%;
+}
+.my-account .text-component-container p {
+  font-size: 24px;
+  font-weight: 500;
+}
+.record .row {
+  display: block;
+}
+.record .files-container {
+  padding: 50px 100px;
+  box-shadow: rgb(0 0 0 / 10%) 0px 10px 50px;
+  border-radius: 16px;
+  width: 100%;
+  text-align: center;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+  justify-content: center;
+  background-color: #fff;
+}
+.record .instructions-text {
+  max-width: 600px;
+  margin: auto;
+  line-height: 30px;
+}
+.record .files-container h1 {
+  font-size: 36px !important;
+  line-height: 48px !important;
+  width: 100%;
+  min-height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+.record .audio-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+.record .buttons-container .controls-audio {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+.record-button:hover,
+.stop-button:hover {
+  box-shadow: none;
+  transition: all 0.2s ease-in;
+}
+.record-button,
+.stop-button {
+  background-color: #0156a1;
+  box-shadow: hsla(208, 99%, 32%, 30%) 0px 4px 6px,
+    hsla(208, 99%, 32%, 30%) 0px 8px 15px,
+    hsla(208, 99%, 32%, 30%) 0px 16px 56px;
+  padding: 30px;
+  transition: all 0.2s ease-out;
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+.record-button::before {
+  content: "";
+  background-image: url("/images/microphone-icon.svg");
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+.stop-button::before {
+  content: "";
+  background-image: url("/images/stop-icon.svg");
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+.record .buttons-container {
+  flex-direction: column;
+  align-items: center;
+}
+.record select.title option {
+  font-size: 16px;
+}
+.record .controls-text {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  justify-content: flex-end;
+  width: 100%;
+}
+.record .controls-text button {
+  background-color: #fff;
+  color: #343a40;
+  border: 2px solid #0156a1;
+  font-weight: 600;
+}
+.record .controls-text button:active,
+.record .controls-text button:hover,
+.record select.title:hover {
+  border-color: #343a40;
+}
+.record select.title {
+  font-size: 16px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  font-weight: 600;
+  text-transform: capitalize;
+  padding: 8px 10px;
+  border-radius: 4px;
+  background-color: #fff;
+  border: 2px solid #0156a1;
+}
+.my-account .text-component-container p span {
+  font-weight: 700;
+  margin-right: 5px;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.my-account .text-component-container h2 {
+  font-size: 30px;
+}
 .number {
   font-size: 44px !important;
-  color: #cd40da;
   line-height: 64px;
   margin-bottom: 10px !important;
 }
@@ -67,15 +252,23 @@ button.t-center {
   position: relative;
   background: url("/images/counts-bg.jpg") center center / cover no-repeat;
   background-attachment: fixed;
+  min-height: 100%;
 }
-.section.bg-accent-img::before {
+.record.section {
+  position: relative;
+  background: url("/images/left-background.png") center center / cover no-repeat;
+  background-attachment: fixed;
+  min-height: 100%;
+}
+.section.bg-accent-img::before,
+.record.section::before {
   content: "";
   position: absolute;
   left: 0px;
   right: 0px;
   top: 0px;
   bottom: 0px;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.7);
 }
 #new-quote {
   margin: auto;
@@ -216,6 +409,13 @@ button.t-center {
   font-size: 12px;
   color: white;
 }
+.criteria-text-container {
+  padding: 60px 0;
+  border-bottom: 1px solid #959595;
+}
+.criteria-text-container li::marker {
+  color: ;
+}
 .sign-up-container {
   display: flex;
   flex-direction: column;
@@ -238,7 +438,7 @@ button.t-center {
   align-items: flex-start;
 }
 .bg-accent {
-  background-color: #c8b6ff;
+  background-color: hsla(208, 100%, 33%, 40%);
 }
 .action-listen-container {
   padding: 50px 10px;
@@ -261,7 +461,7 @@ button.t-center {
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: antiquewhite;
+  background-color: #eff5f8;
   border-radius: 10px;
   font-weight: 600;
   font-size: 30px;
@@ -273,16 +473,25 @@ button.t-center {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  background-color: #e7c6ff;
+  background-color: #fff;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
   position: fixed;
   top: 0;
-  width: 100%;
   z-index: 999;
 }
-.navigation .logo-container {
-  height: 100%;
-  width: 70px;
+.navigation a {
+  color: #000;
+}
+.navigation .logo-container svg {
+  max-width: 50px;
+  transform: rotate(1deg) !important;
+}
+.navigation .logo-container:hover {
+  opacity: 1;
+  fill: #38a1f3;
+}
+.navigation .logo-container:hover svg {
+  transform: rotate(-20deg);
 }
 .navigation .logo {
   max-width: 100px;
@@ -298,15 +507,29 @@ button.t-center {
   padding: 10px 15px;
   cursor: pointer;
   font-weight: 600;
+  transition: all 0.3s ease-in-out;
   letter-spacing: 1px;
 }
+.home-hero-section .row:first-of-type {
+  justify-content: flex-start;
+  padding: 40px 120px 40px 80px;
+  box-shadow: rgb(0 0 0 / 10%) 0px 10px 50px;
+  border-radius: 16px;
+  background-color: #fff;
+  max-width: 1440px;
+  margin-bottom: 80px;
+}
+.home-hero-section h3 {
+  margin-bottom: 0;
+}
+
 .section {
   padding: 80px 0;
   position: relative;
   z-index: 2;
 }
 .empty-section {
-  min-height: 119px;
+  min-height: 89px;
 }
 .buttons-container {
   display: flex;
@@ -323,20 +546,25 @@ button.t-center {
   align-items: center;
   justify-content: center;
 }
-.audio {
-  width: 400px;
-  height: 200px;
-  border-radius: 20px;
-  padding: 20px;
-  border: 2px solid #333;
-  margin: 50px auto;
-}
-.audio audio {
-  outline: none;
+audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-panel {
+  background-color: #fff;
+  color: #fff;
 }
 .buttons-container {
   margin: 50px 0;
 }
 .footer .row.wc1 {
   justify-content: flex-start;
+}
+
+/*media queries*/
+@media (min-width: 1440px) and (max-width: 1649px) {
+  .row,
+  .home-hero-section .row:first-of-type {
+    max-width: 1320px;
+  }
+  .home-hero-section .row:first-of-type {
+    padding-left: 60px;
+  }
 }

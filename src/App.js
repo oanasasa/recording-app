@@ -5,7 +5,7 @@ import Authentification from "./routes/authentification/authentification.compone
 import Navigation from "./routes/navigation/navigation.component";
 import Record from "./routes/record/record.component";
 import MyAccount from "./routes/my account/my-account.component";
-import Admin from "./routes/admin/admin.componenet";
+import Specs from "./routes/specifications/specifications";
 import { auth } from "./utils/firebase/firebase.utils";
 import { onAuthStateChanged } from "firebase/auth";
 
@@ -56,7 +56,7 @@ const App = () => {
           <Route path="record" element={<Record />} />
           <Route path="authentification" element={<Authentification />} />
           <Route path="account" element={<MyAccount />} />
-          <Route path="admin-pannel" element={<Admin />} />
+          <Route path="specs" element={<Specs />} />
         </Route>
       </Routes>
     </AuthContext.Provider>
