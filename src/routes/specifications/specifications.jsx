@@ -4,7 +4,7 @@ import Footer from "../../components/footer-component/footer.component";
 const Specs = () => {
   return (
     <div className="page-container">
-      <div className="section">
+      <div className="section specs">
         <div className="row wc1">
           <div className="c1">
             <h1>Contribution Criteria</h1>

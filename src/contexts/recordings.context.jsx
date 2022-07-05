@@ -2,6 +2,7 @@ import React, { createContext, useState, useEffect } from "react";
 import { getCurrentUserRecordings } from "../utils/firebase/firebase.utils";
 import { useUserContext } from "./user.context";
 
+//furnizorul de inregistrari ale utilizatorilor
 export const RecordingsContext = createContext({
   recordingsMap: [],
   setRecordingsMap: () => {},

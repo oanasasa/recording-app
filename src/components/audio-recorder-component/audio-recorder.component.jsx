@@ -5,12 +5,13 @@ import { RecordingsContext } from "../../contexts/recordings.context";
 import { getCurrentUserRecordings } from "../../utils/firebase/firebase.utils";
 import styles from "./../../components/button/button.module.css";
 
+//componenta audio
 const AudioRecorder = ({ currentPhrase }) => {
   const stopBtnRef = useRef(null);
   const storedAudioRef = useRef(null);
 
   const { setRecordingsMap } = useContext(RecordingsContext);
-
+  //încărcare înregistrări
   const uploadRecording = async () => {
     const blob = await fetch(storedAudioRef.current.src).then((r) => r.blob());
     await upload(currentPhrase.id, currentPhrase.textType, blob);
@@ -24,7 +25,7 @@ const AudioRecorder = ({ currentPhrase }) => {
       audio: true,
     };
 
-    //handle older browsers that might implement getUserMedia in some way
+    //implementare getUserMedia pentru browserele vechi
     if (navigator.mediaDevices === undefined) {
       navigator.mediaDevices = {};
       navigator.mediaDevices.getUserMedia = function (constraintObj) {
@@ -82,12 +83,23 @@ const AudioRecorder = ({ currentPhrase }) => {
     <div>
       <div className="buttons-container">
         <div className="controls-audio">
-          <Button
-            type="button"
-            className="button-container record-button"
-            id="btnStart"
-            onClick={requestPermision}
-          ></Button>
+          <div className="record-active-container">
+            <Button
+              type="button"
+              className="button-container record-button"
+              id="btnStart"
+              onClick={requestPermision}
+            >
+              <div className="wave-boxContainer">
+                <div className="box box1"></div>
+                <div className="box box2"></div>
+                <div className="box box3"></div>
+                <div className="box box4"></div>
+                <div className="box box5"></div>
+              </div>
+            </Button>
+          </div>
+
           <Button
             ref={stopBtnRef}
             type="button"

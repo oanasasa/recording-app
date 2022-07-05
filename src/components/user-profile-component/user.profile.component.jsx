@@ -3,22 +3,14 @@ import { useFilesContext } from "../../contexts/files.context";
 import { RecordingsContext } from "../../contexts/recordings.context";
 import { useUserContext } from "../../contexts/user.context";
 
+//componenta de creare a interfetei utilizatorilor
 const UserProfileData = () => {
-  console.log("blblbllb");
   const { recordingsMap: recordings } = useContext(RecordingsContext);
-
-  console.log("blblbllb2");
   const filesMap = useFilesContext();
-
-  console.log("blblbllb3");
   const userState = useUserContext();
 
-  console.log(userState);
-  console.log(userState.userData);
-
+  if (!userState.userData) return window.location.reload(false);
   const { displayName, email } = userState.userData;
-
-  console.log("blblbllb5");
 
   const filteredTextTypeRecordings = recordings.reduce((acc, recording) => {
     if (typeof acc[recording.textType] === "undefined") {
@@ -53,7 +45,7 @@ const UserProfileData = () => {
           {Object.keys(filteredTextTypeRecordings).map((key) => {
             return (
               <div key={key} style={{ margin: "10px 0 0 0" }}>
-                <p>{key.toUpperCase()}</p>
+                <p className="file-title"> {key.toUpperCase()}</p>
                 <div>
                   {filteredTextTypeRecordings[key].map((recording) => {
                     const recordingText = filesMap.filesMap[key].filter(
@@ -62,7 +54,7 @@ const UserProfileData = () => {
 
                     return (
                       <div key={`${recording.textType}-${recording.textId}`}>
-                        <p>{recordingText}</p>
+                        <p className="text-file">{recordingText}</p>
                         <audio controls>
                           <source src={recording.url} type="audio/mp3" />
                         </audio>

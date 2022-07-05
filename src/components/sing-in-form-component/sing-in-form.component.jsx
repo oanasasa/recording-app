@@ -4,18 +4,17 @@ import FormInput from "../form-input-component/form-input.component";
 import Button from "../button/button.component";
 import "./../../style.css";
 import { useNavigate } from "react-router-dom";
-
+//importarea functiilor din Firebase
 import {
   signInWithGooglePopup,
-  // createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
-
+//functie pentru resetarea field-urilor
 const defaultFormFields = {
   email: "",
   password: "",
 };
-
+//functioa de inregistrare
 const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
@@ -39,6 +38,7 @@ const SignInForm = () => {
         password
       );
       resetFormFields();
+      console.log(user);
 
       navigate("/", { replace: true });
     } catch (error) {

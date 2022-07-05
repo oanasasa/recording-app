@@ -5,19 +5,19 @@ import FormInput from "../form-input-component/form-input.component";
 import Button from "../button/button.component";
 
 import "./../../style.css";
-
+//importarea functiilor din Firebase
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils";
-
+//resetarea filed-urilor
 const defaultFormFields = {
   displayName: "",
   email: "",
   password: "",
   confirmPassword: "",
 };
-
+//functioa de creare a contului
 const SignUpForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;

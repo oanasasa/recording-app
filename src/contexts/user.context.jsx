@@ -1,12 +1,11 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
-import UserProfileData from "../components/user-profile-component/user.profile.component";
 import {
   onAuthStateChangedListener,
   createUserDocumentFromAuth,
   getUserDataFromFireStore,
 } from "../utils/firebase/firebase.utils";
 
-//as the actual value you want to access
+//furnizorul de date ale utilizatorilor
 export const UserContext = createContext({
   currentUser: null,
   setCurrentUser: () => null,

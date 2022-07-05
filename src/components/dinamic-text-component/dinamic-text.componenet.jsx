@@ -8,6 +8,7 @@ const DinamicText = ({
   setNewText,
   setTextId,
 }) => {
+  //returnarea textului în format html cu ajutorul componentei audio
   return (
     <div className="file-text-container">
       <div className="files-container">

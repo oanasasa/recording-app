@@ -48,8 +48,8 @@ const Navigation = () => {
                 </Link>
               </Fragment>
             )}
-            <Link className="nav-link" to="/specs">
-              SPECS
+            <Link className="nav-link" to="/tips">
+              SPEAKING TIPS
             </Link>
           </div>
         </div>

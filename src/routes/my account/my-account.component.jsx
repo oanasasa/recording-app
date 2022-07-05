@@ -9,7 +9,7 @@ const MyAccount = () => {
       <div className="section my-account">
         <div className="row c1">
           <div className="c1">
-            <h1>Your Recordings and information:</h1>
+            <h1>Your information and recordings:</h1>
           </div>
         </div>
         <div className="row c1">

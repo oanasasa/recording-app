@@ -56,7 +56,7 @@ const App = () => {
           <Route path="record" element={<Record />} />
           <Route path="authentification" element={<Authentification />} />
           <Route path="account" element={<MyAccount />} />
-          <Route path="specs" element={<Specs />} />
+          <Route path="tips" element={<Specs />} />
         </Route>
       </Routes>
     </AuthContext.Provider>
